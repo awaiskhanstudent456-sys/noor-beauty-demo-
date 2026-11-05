@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noor Beauty Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F2EF; --surface:#FFFFFF; --ink:#1B2B27; --muted:#5E6E69;
+  --green:#14352E; --on-green:#F7F2EF; --blush:#EBC9C4; --gold:#B88A4A; --line:#E3D8D2;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101B18; --surface:#18272B; --ink:#F1E9E4; --muted:#A9B8B3;
+    --green:#0A1411; --on-green:#F1E9E4; --blush:#E7BDB6; --gold:#D3A965; --line:#2A3C37; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101B18; --surface:#18272B; --ink:#F1E9E4; --muted:#A9B8B3;
+  --green:#0A1411; --on-green:#F1E9E4; --blush:#E7BDB6; --gold:#D3A965; --line:#2A3C37; color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 Jost,system-ui,sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:600 26px "Cormorant Garamond",serif;text-decoration:none}
+nav{display:flex;gap:26px;align-items:center}
+nav a{text-decoration:none;font-size:15px;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--green);color:var(--on-green);padding:13px 26px;border-radius:999px;text-decoration:none;font-weight:500;border:0;cursor:pointer;font-size:16px;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+@media(max-width:720px){nav a:not(.btn){display:none}}
+
+.hero{padding:64px 0 88px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(44px,6.4vw,84px);margin-bottom:22px}
+.hero p{max-width:46ch;color:var(--muted);font-size:19px;margin-bottom:30px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.arch{position:relative;aspect-ratio:3/4;max-width:420px;margin-left:auto;width:100%}
+.arch .shape{position:absolute;inset:0;border-radius:999px 999px 24px 24px;background:linear-gradient(165deg,var(--blush),#D9A9A0 55%,var(--gold));overflow:hidden}
+.arch .shape svg{position:absolute;inset:0;width:100%;height:100%}
+.arch .frame{position:absolute;inset:-14px;border:1px solid var(--gold);border-radius:999px 999px 34px 34px;pointer-events:none}
+.badge{position:absolute;left:-28px;bottom:36px;background:var(--surface);padding:16px 20px;border-radius:16px;box-shadow:0 14px 34px rgba(20,53,46,.18);font-size:15px}
+.badge b{display:block;font:600 24px "Cormorant Garamond",serif}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.arch{margin:20px auto 0;max-width:340px}.badge{left:-8px}}
+
+section{padding:84px 0}
+.head{max-width:620px;margin-bottom:40px}
+.head h2{font-size:clamp(34px,4.4vw,52px);margin-bottom:12px}
+.head p{color:var(--muted)}
+
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tab{background:transparent;border:1px solid var(--line);color:var(--ink);padding:10px 22px;border-radius:999px;cursor:pointer;font:500 15px Jost,sans-serif}
+.tab[aria-selected="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.menu{display:none;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:12px 32px}
+.menu.on{display:block}
+.row{display:flex;align-items:baseline;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}
+.row h3{font-size:23px}
+.row small{display:block;color:var(--muted);font-size:15px;line-height:1.4;margin-top:2px}
+.row .dots{flex:1;border-bottom:1px dotted var(--muted);opacity:.5;transform:translateY(-5px)}
+.row .price{font:600 21px "Cormorant Garamond",serif;white-space:nowrap}
+
+.bridal{background:var(--green);color:var(--on-green)}
+.bridal .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.bridal h2{font-size:clamp(36px,5vw,60px);margin-bottom:18px}
+.bridal p{opacity:.85;max-width:46ch;margin-bottom:26px}
+.bridal .btn{background:var(--blush);color:#1B2B27}
+.pack{border:1px solid rgba(247,242,239,.25);border-radius:20px;padding:28px}
+.pack li{list-style:none;padding:11px 0 11px 28px;position:relative;border-bottom:1px solid rgba(247,242,239,.15)}
+.pack li:last-child{border:0}
+.pack li::before{content:"";position:absolute;left:0;top:20px;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.pack .from{font:600 30px "Cormorant Garamond",serif;margin-top:14px;color:var(--blush)}
+@media(max-width:820px){.bridal .wrap{grid-template-columns:1fr}}
+
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.why h3{font-size:27px;margin-bottom:8px}
+.why p{color:var(--muted)}
+.why .ic{width:44px;height:44px;margin-bottom:16px;color:var(--gold)}
+@media(max-width:820px){.why{grid-template-columns:1fr;gap:30px}}
+
+.book{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.book .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+form{display:grid;gap:16px}
+label{font-size:15px;color:var(--muted);display:grid;gap:6px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%}
+.info dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin-top:20px}
+.info dt{color:var(--muted)}
+.info dd{font-weight:500}
+@media(max-width:820px){.book .wrap{grid-template-columns:1fr}}
+
+footer{padding:36px 0;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(prefers-reduced-motion:no-preference){
+  .arch .shape{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Noor Beauty Studio</a>
+    <nav>
+      <a href="#services">Services</a><a href="#bridal">Bridal</a><a href="#visit">Visit</a>
+      <a class="btn" href="#book">Book now</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Look like you, only more rested.</h1>
+        <p>Hair, skin, nails and bridal makeup by trained stylists, in a calm, private salon for women.</p>
+        <div class="cta">
+          <a class="btn" href="#book">Book an appointment</a>
+          <a class="btn ghost" href="#services">See prices</a>
+        </div>
+      </div>
+      <div class="arch" aria-hidden="true">
+        <div class="frame"></div>
+        <div class="shape">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+            <circle cx="150" cy="170" r="62" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
+            <path d="M118 330c10-70 54-70 64 0" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
+            <path d="M92 150c0-70 116-70 116 0-10-28-40-44-58-44s-48 16-58 44z" fill="#fff" fill-opacity=".35"/>
+            <circle cx="236" cy="70" r="5" fill="#fff"/><circle cx="64" cy="250" r="3" fill="#fff"/><circle cx="250" cy="290" r="4" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="badge"><b>1,200+</b>brides and clients served</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="services" style="padding-top:20px">
+    <div class="wrap">
+      <div class="head">
+        <h2>Services and prices</h2>
+        <p>Clear prices before you sit down. Every service starts with a short consultation.</p>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-t="hair">Hair</button>
+        <button class="tab" role="tab" aria-selected="false" data-t="skin">Skin and facials</button>
+        <button class="tab" role="tab" aria-selected="false" data-t="nails">Hands and feet</button>
+        <button class="tab" role="tab" aria-selected="false" data-t="makeup">Makeup</button>
+      </div>
+      <div id="hair" class="menu on" role="tabpanel">
+        <div class="row"><div><h3>Haircut and blow-dry</h3><small>Wash, cut and finish</small></div><span class="dots"></span><span class="price">Rs 1,500</span></div>
+        <div class="row"><div><h3>Hair colour</h3><small>Full colour, ammonia-free options available</small></div><span class="dots"></span><span class="price">from Rs 4,500</span></div>
+        <div class="row"><div><h3>Keratin smoothing</h3><small>Price depends on hair length</small></div><span class="dots"></span><span class="price">from Rs 9,000</span></div>
+        <div class="row"><div><h3>Deep conditioning spa</h3><small>Steam treatment and scalp massage</small></div><span class="dots"></span><span class="price">Rs 2,500</span></div>
+      </div>
+      <div id="skin" class="menu" role="tabpanel">
+        <div class="row"><div><h3>Classic facial</h3><small>Cleanse, exfoliate, massage and mask</small></div><span class="dots"></span><span class="price">Rs 2,500</span></div>
+        <div class="row"><div><h3>Hydrafacial</h3><small>Deep cleanse and hydration for dull skin</small></div><span class="dots"></span><span class="price">Rs 6,500</span></div>
+        <div class="row"><div><h3>Threading</h3><small>Eyebrows and upper lip</small></div><span class="dots"></span><span class="price">Rs 300</span></div>
+        <div class="row"><div><h3>Waxing, full arms and legs</h3><small>Wax with a gentle formula</small></div><span class="dots"></span><span class="price">Rs 2,800</span></div>
+      </div>
+      <div id="nails" class="menu" role="tabpanel">
+        <div class="row"><div><h3>Manicure</h3><small>Shape, cuticle care, hand massage</small></div><span class="dots"></span><span class="price">Rs 1,500</span></div>
+        <div class="row"><div><h3>Pedicure</h3><small>Soak, scrub, massage and polish</small></div><span class="dots"></span><span class="price">Rs 2,000</span></div>
+        <div class="row"><div><h3>Gel polish</h3><small>Lasts up to three weeks</small></div><span class="dots"></span><span class="price">Rs 1,800</span></div>
+      </div>
+      <div id="makeup" class="menu" role="tabpanel">
+        <div class="row"><div><h3>Party makeup</h3><small>Includes hairstyle</small></div><span class="dots"></span><span class="price">Rs 6,000</span></div>
+        <div class="row"><div><h3>Engagement or mehndi look</h3><small>Trial available on request</small></div><span class="dots"></span><span class="price">Rs 15,000</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bridal" id="bridal">
+    <div class="wrap">
+      <div>
+        <h2>Your wedding day, planned in detail.</h2>
+        <p>Book a trial first, so you see your full look before the big day. We keep your look notes, so every function matches.</p>
+        <a class="btn" href="#book">Ask about bridal dates</a>
+      </div>
+      <ul class="pack">
+        <li>Trial session for makeup and hair</li>
+        <li>Bridal makeup with HD finish</li>
+        <li>Hairstyle and dupatta setting</li>
+        <li>Skin prep facial the week before</li>
+        <li>Stylist travels to your home on request</li>
+        <div class="from">from Rs 35,000</div>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><h2>Why women return to us</h2></div>
+      <div class="why">
+        <div>
+          <svg class="ic" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="14" width="28" height="22" rx="4"/><path d="M16 14v-4a6 6 0 0112 0v4"/></svg>
+          <h3>Private and women-only</h3><p>A separate, closed space, so you can relax and take your time.</p>
+        </div>
+        <div>
+          <svg class="ic" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l4 10 10 1-8 7 3 11-9-6-9 6 3-11-8-7 10-1z"/></svg>
+          <h3>Trained stylists</h3><p>Each stylist works in one area, from colour to bridal makeup.</p>
+        </div>
+        <div>
+          <svg class="ic" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 36V20l10-12 10 12v16z"/><path d="M18 36V26h8v10"/></svg>
+          <h3>Clean tools, trusted brands</h3><p>Tools are sanitised after every client. We use branded products only.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="wrap">
+      <div>
+        <div class="head" style="margin-bottom:24px"><h2>Book your visit</h2><p>Send your details and we confirm your slot on WhatsApp.</p></div>
+        <form id="f" onsubmit="return false">
+          <label>Your name<input id="n" autocomplete="name" placeholder="Ayesha Khan"></label>
+          <label>Service
+            <select id="s">
+              <option>Haircut and blow-dry</option><option>Hair colour</option><option>Facial</option>
+              <option>Manicure and pedicure</option><option>Party makeup</option><option>Bridal makeup</option>
+            </select>
+          </label>
+          <label>Preferred date<input id="d" type="date"></label>
+          <a class="btn" id="wa" href="#" target="_blank" rel="noopener" style="text-align:center">Send on WhatsApp</a>
+        </form>
+      </div>
+      <div class="info" id="visit">
+        <h2 style="font-size:36px">Find the studio</h2>
+        <dl>
+          <dt>Address</dt><dd>Canal Road peshawar</dd>
+          <dt>Hours</dt><dd>Mon to Sat, 10 am to 8 pm</dd>
+          <dt>Sunday</dt><dd>By appointment only</dd>
+          <dt>Phone</dt><dd>0300 0000000</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Noor Beauty Studio</span><span>Peshawar, Pakistan</span></div></footer>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',x===t)});
+    document.querySelectorAll('.menu').forEach(function(m){m.classList.toggle('on',m.id===t.dataset.t)});
+  });
+});
+var NUMBER='923000000000';
+function upd(){
+  var n=document.getElementById('n').value||'—',s=document.getElementById('s').value,d=document.getElementById('d').value||'any day';
+  var msg='Hello, I would like to book: '+s+'. Name: '+n+'. Date: '+d+'.';
+  document.getElementById('wa').href='https://wa.me/'+NUMBER+'?text='+encodeURIComponent(msg);
+}
+['n','s','d'].forEach(function(i){document.getElementById(i).addEventListener('input',upd)});
+upd();
+</script>
+</body>
+</html>
